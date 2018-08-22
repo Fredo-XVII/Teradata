@@ -30,7 +30,7 @@ install.packages("RODBC")
 ```{r}
 library(RODBC)
 UID <- 'Z001C9V'
-db_td <- odbcConnect('TDPRODA', uid = UID , pwd = .rs.askForPassword("Password:"))
+db_td <- odbcConnect('TDPRODUCTION', uid = UID , pwd = .rs.askForPassword("Password:"))
 
 ```
 
