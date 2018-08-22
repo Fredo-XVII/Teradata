@@ -1,0 +1,50 @@
+---
+title: "R ODBC CONNECTION TO TERADATA"
+output: html_notebook
+
+---
+
+----
+
+**NOTE: These instructions are for PC**
+
+## Minimum requirements
+ - Must have Teradata drivers: 
+    - Download from Application Cataglog: 32bit drivers for PC
+    - Download from Teradata: 64bit/32bit drivers for PC
+        - http://downloads.teradata.com/download/connectivity/odbc-driver/windows
+
+-----
+
+## Load libraries
+
+#### One time code:
+```{r}
+install.packages("RODBC")
+```
+
+-----
+
+## Make Connection
+
+```{r}
+library(RODBC)
+UID <- 'Z001C9V'
+db_td <- odbcConnect('TDPRODA', uid = UID , pwd = .rs.askForPassword("Password:"))
+
+```
+
+## Test Connection
+
+```{r}
+dates <- sqlQuery(db_td, "select top 10 * from schema.date where year = 2017 order by greg_d")
+head(dates)
+```
+
+## Close Connection
+
+```{r}
+odbcClose(db_td)
+```
+
+-----
